@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router, NavigationEnd, ActivatedRoute, Route } from '@angular/router';
-import { filter, map } from 'rxjs/operators';
+import { filter } from 'rxjs/operators';
+import { GetDataService } from './get-data.service';
+import { SocialMediaData } from './interfaces/SocialMediaData';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +12,12 @@ import { filter, map } from 'rxjs/operators';
 })
 export class AppComponent {
 
+  public socialMediaData: SocialMediaData | undefined;
+
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
-    private titleService: Title) {
+    private titleService: Title,
+    private dataService: GetDataService) {
   }
 
   ngOnInit() {
@@ -25,6 +30,11 @@ export class AppComponent {
           this.titleService.setTitle(routeData['title'])
         })
       })
+
+    this.dataService.getSocialMediaData().subscribe(
+      (data: SocialMediaData) => this.socialMediaData = { ...data }
+    )
+
   }
 
   //get child component recursively

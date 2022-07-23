@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+
 import { AppComponent } from './app.component';
 import { PublicationsComponent } from './components/publications/publications.component';
 import { SeminarsComponent } from './components/seminars/seminars.component';
@@ -24,7 +25,8 @@ import { HomeComponent } from './components/home/home.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [Title],
   bootstrap: [AppComponent]
